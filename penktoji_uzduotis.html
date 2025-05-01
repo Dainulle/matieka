@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Penktoji užduotis</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
+    <style>
+        body { font-family: Arial; background-color: #f0fff0; padding: 20px; }
+        .qr-code { margin-top: 20px; }
+        input { font-size: 1.2em; padding: 5px; }
+        button { font-size: 1.1em; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h2>Penktoji užduotis</h2>
+    <p>Sukurkite mažiausią keturženklį skaičių iš 2, 5, 0, 7 (po 1 kartą).</p>
+    <input type="text" id="answer" placeholder="Įveskite atsakymą">
+    <button onclick="checkAnswer()">Tikrinti</button>
+    <div id="result" style="margin-top:10px;"></div>
+    <div id="qr-code" class="qr-code"></div>
+
+    <script>
+    function checkAnswer() {
+        const input = document.getElementById('answer').value;
+        const result = document.getElementById('result');
+        const qrDiv = document.getElementById('qr-code');
+        qrDiv.innerHTML = '';
+
+        if (input === "2057") {
+            result.innerHTML = "✅ Teisingai! Štai tavo QR kodas:";
+            const qr = new QRious({
+                element: document.createElement('canvas'),
+                value: "Sveikinu! Įvykdei misiją 🎉",
+                size: 200
+            });
+            qrDiv.appendChild(qr.element);
+        } else {
+            result.innerHTML = "❌ Bandyk dar kartą.";
+        }
+    }
+    </script>
+</body>
+</html>
